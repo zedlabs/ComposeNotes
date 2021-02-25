@@ -1,0 +1,23 @@
+package ml.zedlabs.statetestcompose
+
+import androidx.room.*
+import kotlinx.coroutines.flow.Flow
+
+@Dao
+interface NotesDao {
+
+    @Query("SELECT * FROM notes")
+    fun getAllNotes(): Flow<List<Note>>
+
+    @Query("DELETE FROM notes")
+    suspend fun deleteAllNotes()
+
+    @Insert
+    suspend fun insertNote(note: Note)
+
+    @Delete
+    suspend fun deleteNote(note: Note)
+
+    @Update
+    suspend fun updateNote(note: Note)
+}
