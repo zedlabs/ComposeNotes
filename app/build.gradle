@@ -62,7 +62,7 @@ dependencies {
 //    implementation "android.arch.lifecycle:common-java8:$lifecycleVersion"
 
     // Navigation Component
-    implementation "androidx.navigation:navigation-compose:1.0.0-alpha07"
+    implementation "androidx.navigation:navigation-compose:1.0.0-alpha08"
 //    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
 //    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 

@@ -6,28 +6,23 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MainViewModel @ViewModelInject constructor(
-    dao: NotesDao,
+    val notesDao: NotesDao,
     repository: MainRepository,
 ) : ViewModel() {
 
     val notes: LiveData<List<Note>> =
         repository.getAllNotes().asLiveData()
 
-    init {
-        var i = 0
+    fun insertNote(note: Note){
         viewModelScope.launch {
-            while (true){
-                dao.insertNote(Note(
-                    0,
-                    "${i++}",
-                    "",
-                    ""
-                ))
-                delay(3000)
-            }
-
+            notesDao.insertNote(note)
         }
+    }
 
+    fun deleteNote(note: Note){
+        viewModelScope.launch {
+            notesDao.deleteNote(note)
+        }
     }
 
 }
