@@ -29,12 +29,9 @@ object AppComponent {
             "note-db"
         ).build()
 
-
-
-
 //    @Provides
 //    @Singleton
-//    fun provideRepository() {
-//        return MainRepository()
+//    fun provideRepository(notesDao: NotesDao): MainRepository {
+//        return MainRepository(notesDao)
 //    }
 }

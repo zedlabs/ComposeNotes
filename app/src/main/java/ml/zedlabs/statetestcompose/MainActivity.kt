@@ -15,9 +15,8 @@ import androidx.compose.material.icons.sharp.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.lifecycle.viewmodel.compose.viewModel
 import dagger.hilt.android.AndroidEntryPoint
-import ml.zedlabs.statetestcompose.ui.elements.notesListItem
+import ml.zedlabs.statetestcompose.ui.elements.NotesListItem
 import ml.zedlabs.statetestcompose.ui.theme.StateTestComposeTheme
 
 @AndroidEntryPoint
@@ -27,39 +26,34 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            NotesList()
+            NavGraph()
         }
+
     }
 }
 
 @Composable
-fun NotesList(vm: MainViewModel = viewModel()) {
+fun NotesList(vm: MainViewModel, addNote: () -> Unit, editNote: (Note) -> Unit) {
+
     val notes by vm.notes.observeAsState()
     StateTestComposeTheme {
         Scaffold(
             floatingActionButton = {
                 ExtendedFloatingActionButton(
                     text = { Text("Create Note") },
-                    onClick = { /*TODO*/ },
+                    onClick = {addNote()},
                     icon = { Icon(imageVector = Icons.Sharp.Add, contentDescription = "Add Icon") }
                 )
             }
         ) {
             LazyColumn {
                 itemsIndexed(items = notes.orEmpty()) { _, note ->
-                    notesListItem(note)
+                    NotesListItem(note, editNote)
                 }
             }
         }
 
     }
-
-//    val navController = rememberNavController()
-
-//    NavHost(navController, startDestination = "notes-list") {
-//        composable("notes-list") { notesList() }
-//        composable("new-note") {  addNote() }
-//    }
 
 }
 
