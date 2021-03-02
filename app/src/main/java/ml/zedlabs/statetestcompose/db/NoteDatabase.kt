@@ -1,4 +1,4 @@
-package ml.zedlabs.statetestcompose
+package ml.zedlabs.statetestcompose.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

@@ -16,6 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import dagger.hilt.android.AndroidEntryPoint
+import ml.zedlabs.statetestcompose.db.Note
+import ml.zedlabs.statetestcompose.ui.MainViewModel
 import ml.zedlabs.statetestcompose.ui.elements.NotesListItem
 import ml.zedlabs.statetestcompose.ui.theme.StateTestComposeTheme
 

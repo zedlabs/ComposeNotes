@@ -1,7 +1,8 @@
-package ml.zedlabs.statetestcompose
+package ml.zedlabs.statetestcompose.db
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
+import ml.zedlabs.statetestcompose.db.Note
 
 @Dao
 interface NotesDao {

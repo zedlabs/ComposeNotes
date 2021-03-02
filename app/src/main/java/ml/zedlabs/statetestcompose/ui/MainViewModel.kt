@@ -1,8 +1,11 @@
-package ml.zedlabs.statetestcompose
+package ml.zedlabs.statetestcompose.ui
 
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import ml.zedlabs.statetestcompose.repository.MainRepository
+import ml.zedlabs.statetestcompose.db.Note
+import ml.zedlabs.statetestcompose.db.NotesDao
 import javax.inject.Inject
 
 @HiltViewModel

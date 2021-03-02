@@ -1,4 +1,4 @@
-package ml.zedlabs.statetestcompose
+package ml.zedlabs.statetestcompose.db
 
 import android.os.Parcelable
 import androidx.room.Entity

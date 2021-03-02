@@ -3,22 +3,17 @@ package ml.zedlabs.statetestcompose.ui.elements
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.sharp.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import ml.zedlabs.statetestcompose.Note
+import ml.zedlabs.statetestcompose.db.Note
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
-import androidx.navigation.compose.rememberNavController
-import ml.zedlabs.statetestcompose.MainViewModel
+import ml.zedlabs.statetestcompose.ui.MainViewModel
 
 @Composable
 fun AddNote(vm: MainViewModel, note: Note, backPress: () -> Unit) {

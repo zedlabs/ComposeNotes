@@ -1,4 +1,4 @@
-package ml.zedlabs.statetestcompose
+package ml.zedlabs.statetestcompose.di
 
 import android.content.Context
 import androidx.room.Room
@@ -7,8 +7,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import retrofit2.Retrofit
-import retrofit2.create
+import ml.zedlabs.statetestcompose.db.NoteDatabase
+import ml.zedlabs.statetestcompose.db.NotesDao
 import javax.inject.Singleton
 
 @Module
@@ -29,9 +29,4 @@ object AppComponent {
             "note-db"
         ).build()
 
-//    @Provides
-//    @Singleton
-//    fun provideRepository(notesDao: NotesDao): MainRepository {
-//        return MainRepository(notesDao)
-//    }
 }

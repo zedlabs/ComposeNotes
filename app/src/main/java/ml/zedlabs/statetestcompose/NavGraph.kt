@@ -10,6 +10,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
+import ml.zedlabs.statetestcompose.db.Note
+import ml.zedlabs.statetestcompose.ui.MainViewModel
 import ml.zedlabs.statetestcompose.ui.elements.AddNote
 
 object MainDestinations {
