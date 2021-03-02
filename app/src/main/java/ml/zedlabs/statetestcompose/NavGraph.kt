@@ -13,10 +13,10 @@ import androidx.navigation.compose.rememberNavController
 import ml.zedlabs.statetestcompose.db.Note
 import ml.zedlabs.statetestcompose.ui.MainViewModel
 import ml.zedlabs.statetestcompose.ui.elements.AddNote
+import ml.zedlabs.statetestcompose.ui.elements.NotesList
 
 object MainDestinations {
     const val NOTES_LIST = "notes-list"
-    const val ADD_NOTE = "add-note"
     const val EDIT_NOTE = "edit-note"
     const val NOTE_ID_KEY = "noteId"
     const val NOTE_MODEL_KEY = "note"
@@ -36,14 +36,7 @@ fun NavGraph(startDestination: String = MainDestinations.NOTES_LIST) {
             val vm: MainViewModel = viewModel(
                 factory = HiltViewModelFactory(LocalContext.current, it)
             )
-            NotesList(vm = vm, actions.addNewNote, actions.editNote)
-        }
-
-        composable(MainDestinations.ADD_NOTE) {
-            val vm: MainViewModel = viewModel(
-                factory = HiltViewModelFactory(LocalContext.current, it)
-            )
-            AddNote(vm, emptyNote(), actions.upPress)
+            NotesList(vm = vm, actions.editNote)
         }
 
         composable("${MainDestinations.EDIT_NOTE}/{${MainDestinations.NOTE_ID_KEY}}") {
@@ -63,9 +56,7 @@ fun NavGraph(startDestination: String = MainDestinations.NOTES_LIST) {
 }
 
 class MainActions(navController: NavHostController) {
-    val addNewNote: () -> Unit = {
-        navController.navigate(MainDestinations.ADD_NOTE)
-    }
+
     val editNote: (Note) -> Unit = { note: Note ->
         navController.currentBackStackEntry?.arguments?.putParcelable(
             MainDestinations.NOTE_MODEL_KEY,
@@ -77,5 +68,3 @@ class MainActions(navController: NavHostController) {
         navController.navigateUp()
     }
 }
-
-fun emptyNote(): Note = Note(0, "", "", "")

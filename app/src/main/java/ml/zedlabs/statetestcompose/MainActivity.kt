@@ -30,33 +30,9 @@ class MainActivity : AppCompatActivity() {
         setContent {
             NavGraph()
         }
-
     }
 }
 
-@Composable
-fun NotesList(vm: MainViewModel, addNote: () -> Unit, editNote: (Note) -> Unit) {
 
-    val notes by vm.notes.observeAsState()
-    StateTestComposeTheme {
-        Scaffold(
-            floatingActionButton = {
-                ExtendedFloatingActionButton(
-                    text = { Text("Create Note") },
-                    onClick = {addNote()},
-                    icon = { Icon(imageVector = Icons.Sharp.Add, contentDescription = "Add Icon") }
-                )
-            }
-        ) {
-            LazyColumn {
-                itemsIndexed(items = notes.orEmpty()) { _, note ->
-                    NotesListItem(note, editNote)
-                }
-            }
-        }
-
-    }
-
-}
 
 
