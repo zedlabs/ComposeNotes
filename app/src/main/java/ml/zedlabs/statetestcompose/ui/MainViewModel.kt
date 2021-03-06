@@ -14,6 +14,13 @@ class MainViewModel @Inject constructor(
     private val repository: MainRepository
 ) : ViewModel() {
 
+    var _searchViewVisible = MutableLiveData(false)
+    val searchViewVisible: LiveData<Boolean> = _searchViewVisible
+
+    fun searchViewVisibility(isVisible: Boolean){
+        _searchViewVisible.value = isVisible
+    }
+
     val notes: LiveData<List<Note>> =
         repository.getAllNotes().asLiveData()
 
