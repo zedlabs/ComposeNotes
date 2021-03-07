@@ -10,6 +10,9 @@ interface NotesDao {
     @Query("SELECT * FROM notes")
     fun getAllNotes(): Flow<List<Note>>
 
+    @Query("SELECT * FROM notes WHERE title LIKE '%' || :titleParam || '%' ")
+    fun searchQuery(titleParam: String): Flow<List<Note>>
+
     @Query("DELETE FROM notes")
     suspend fun deleteAllNotes()
 

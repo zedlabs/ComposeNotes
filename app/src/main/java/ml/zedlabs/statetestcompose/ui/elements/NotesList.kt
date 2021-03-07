@@ -24,10 +24,12 @@ import ml.zedlabs.statetestcompose.ui.theme.*
 fun NotesList(vm: MainViewModel, editNote: (Note) -> Unit) {
 
     val notes by vm.notes.observeAsState()
+    val searchParam by vm.searchParam.observeAsState("")
+
     StateTestComposeTheme {
         Scaffold(
             topBar = {
-                NotesListTopBar(vm)
+                NotesListTopBar(vm, searchParam)
             },
             floatingActionButton = {
                 ExtendedFloatingActionButton(
@@ -48,7 +50,8 @@ fun NotesList(vm: MainViewModel, editNote: (Note) -> Unit) {
             }
         ) {
             LazyColumn {
-                itemsIndexed(items = notes.orEmpty()) { _, note ->
+                itemsIndexed(
+                    items = notes.orEmpty().filter { it.title.contains(searchParam) }) { _, note ->
                     NotesListItem(note, editNote)
                 }
             }
@@ -59,9 +62,10 @@ fun NotesList(vm: MainViewModel, editNote: (Note) -> Unit) {
 }
 
 @Composable
-fun NotesListTopBar(vm: MainViewModel) {
+fun NotesListTopBar(vm: MainViewModel, searchParam: String) {
 
     val isSearchBarVisible by vm.searchViewVisible.observeAsState(false)
+
 
     Row(
         modifier = Modifier
@@ -71,14 +75,14 @@ fun NotesListTopBar(vm: MainViewModel) {
         if (isSearchBarVisible) {
             Row(modifier = Modifier.fillMaxWidth()) {
                 OutlinedTextField(
-                    placeholder = { Text(text = "Enter Search Query 📝")},
+                    placeholder = { Text(text = "Enter Search Query 📝") },
                     singleLine = true,
                     textStyle = TextStyle(fontSize = 14.sp),
                     modifier = Modifier
                         .fillMaxWidth(.9f)
                         .padding(start = 8.dp),
-                    value = "", onValueChange = {
-
+                    value = searchParam, onValueChange = {
+                        vm.updateSearchParam(it)
                     },
                     colors = TextFieldDefaults.outlinedTextFieldColors(
                         backgroundColor = purpleD5
@@ -95,6 +99,7 @@ fun NotesListTopBar(vm: MainViewModel) {
                         .size(30.dp)
                         .clickable {
                             vm.searchViewVisibility(false)
+                            vm.updateSearchParam("")
                         }
                 )
             }

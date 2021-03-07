@@ -12,6 +12,10 @@ class MainRepository @Inject constructor(
     val notesDao: NotesDao
 ) {
 
+    fun searchQuery(query: String): Flow<List<Note>> = notesDao.searchQuery(query)
+        .flowOn(Dispatchers.Main)
+        .conflate()
+
     fun getAllNotes(): Flow<List<Note>> = notesDao.getAllNotes()
         .flowOn(Dispatchers.Main)
         .conflate()

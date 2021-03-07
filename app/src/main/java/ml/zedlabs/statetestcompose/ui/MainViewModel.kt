@@ -11,18 +11,33 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val notesDao: NotesDao,
-    private val repository: MainRepository
+    val repository: MainRepository
 ) : ViewModel() {
 
     var _searchViewVisible = MutableLiveData(false)
     val searchViewVisible: LiveData<Boolean> = _searchViewVisible
 
-    fun searchViewVisibility(isVisible: Boolean){
+    fun searchViewVisibility(isVisible: Boolean) {
         _searchViewVisible.value = isVisible
     }
 
-    val notes: LiveData<List<Note>> =
-        repository.getAllNotes().asLiveData()
+    var _searchParam = MutableLiveData("")
+    val searchParam: LiveData<String> = _searchParam
+
+//    var _searchedNotes = MutableLiveData(listOf<Note>())
+//    val searchedNotes: LiveData<List<Note>> = _searchedNotes.value!!
+//
+//    fun searchNotes(param: String){
+//        _searchedNotes.postValue(repository.searchQuery(param).asLiveData())
+//    }
+
+
+    fun updateSearchParam(newValue: String) {
+        _searchParam.value = newValue
+    }
+
+
+    val notes: LiveData<List<Note>> = repository.getAllNotes().asLiveData()
 
     fun insertNote(note: Note) {
         viewModelScope.launch {
