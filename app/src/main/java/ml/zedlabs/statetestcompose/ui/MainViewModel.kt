@@ -2,7 +2,9 @@ package ml.zedlabs.statetestcompose.ui
 
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import ml.zedlabs.statetestcompose.repository.MainRepository
 import ml.zedlabs.statetestcompose.db.Note
 import ml.zedlabs.statetestcompose.db.NotesDao
@@ -14,6 +16,20 @@ class MainViewModel @Inject constructor(
     val repository: MainRepository
 ) : ViewModel() {
 
+    private val _title: MutableLiveData<String> = MutableLiveData()
+    val title: LiveData<String> = _title
+
+    fun onTitleChanged(newName: String) {
+        _title.value = newName
+    }
+
+    private val _body: MutableLiveData<String> = MutableLiveData()
+    val body: LiveData<String> = _body
+
+    fun onBodyChanged(newName: String) {
+        _body.value = newName
+    }
+
     var _searchViewVisible = MutableLiveData(false)
     val searchViewVisible: LiveData<Boolean> = _searchViewVisible
 
@@ -23,13 +39,6 @@ class MainViewModel @Inject constructor(
 
     var _searchParam = MutableLiveData("")
     val searchParam: LiveData<String> = _searchParam
-
-//    var _searchedNotes = MutableLiveData(listOf<Note>())
-//    val searchedNotes: LiveData<List<Note>> = _searchedNotes.value!!
-//
-//    fun searchNotes(param: String){
-//        _searchedNotes.postValue(repository.searchQuery(param).asLiveData())
-//    }
 
 
     fun updateSearchParam(newValue: String) {
