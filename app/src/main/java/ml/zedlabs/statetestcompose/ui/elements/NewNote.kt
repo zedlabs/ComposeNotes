@@ -2,11 +2,9 @@ package ml.zedlabs.statetestcompose.ui.elements
 
 import android.content.Context
 import android.widget.Toast
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.ScrollableState
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,9 +12,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.sharp.ArrowBack
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -28,8 +26,10 @@ import ml.zedlabs.statetestcompose.db.Note
 import ml.zedlabs.statetestcompose.ui.MainViewModel
 import ml.zedlabs.statetestcompose.ui.theme.*
 
+@ExperimentalAnimationApi
 @Composable
 fun AddNote(vm: MainViewModel, note: Note, backPress: () -> Unit) {
+
 
     StateTestComposeTheme {
 
@@ -92,7 +92,7 @@ fun AddNote(vm: MainViewModel, note: Note, backPress: () -> Unit) {
                         .fillMaxWidth()
                         .defaultMinSize(minHeight = 90.dp),
                     value = body,
-                    onValueChange = { vm.onBodyChanged(it)},
+                    onValueChange = { vm.onBodyChanged(it) },
                     label = { Text(text = "Note Details ") },
                     colors = TextFieldDefaults.outlinedTextFieldColors(
                         focusedBorderColor = purpleD0, unfocusedBorderColor = purpleD3
