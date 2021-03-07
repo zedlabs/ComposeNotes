@@ -1,12 +1,15 @@
 package ml.zedlabs.statetestcompose.ui.elements
 
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.sharp.*
+import androidx.compose.material.icons.sharp.Add
+import androidx.compose.material.icons.sharp.Clear
+import androidx.compose.material.icons.sharp.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -21,7 +24,6 @@ import ml.zedlabs.statetestcompose.ui.theme.*
 
 @Composable
 fun NotesList(vm: MainViewModel, editNote: (Note) -> Unit) {
-
     val notes by vm.notes.observeAsState()
     val searchParam by vm.searchParam.observeAsState("")
 
@@ -65,66 +67,74 @@ fun NotesListTopBar(vm: MainViewModel, searchParam: String) {
 
     val isSearchBarVisible by vm.searchViewVisible.observeAsState(false)
 
-
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(60.dp)
-    ) {
-        if (isSearchBarVisible) {
-            Row(modifier = Modifier.fillMaxWidth()) {
-                OutlinedTextField(
-                    placeholder = { Text(text = "Enter Search Query 📝") },
-                    singleLine = true,
-                    textStyle = TextStyle(fontSize = 14.sp),
+    Crossfade(targetState = isSearchBarVisible) { isVisible ->
+        when (isVisible) {
+            true -> {
+                Row(
                     modifier = Modifier
-                        .fillMaxWidth(.9f)
-                        .padding(start = 8.dp),
-                    value = searchParam, onValueChange = {
-                        vm.updateSearchParam(it)
-                    },
-                    colors = TextFieldDefaults.outlinedTextFieldColors(
-                        backgroundColor = purpleD5
+                        .fillMaxWidth()
+                        .height(70.dp)
+                ) {
+                    OutlinedTextField(
+                        placeholder = { Text(text = "Enter Search Query") },
+                        singleLine = true,
+                        textStyle = TextStyle(fontSize = 14.sp),
+                        modifier = Modifier
+                            .fillMaxWidth(.9f)
+                            .padding(start = 8.dp),
+                        value = searchParam, onValueChange = {
+                            vm.updateSearchParam(it)
+                        },
+                        colors = TextFieldDefaults.outlinedTextFieldColors(
+                            backgroundColor = purpleD5
+                        )
                     )
-                )
-                Icon(
-                    imageVector = Icons.Sharp.Clear,
-                    tint = purpleD1,
-                    contentDescription = "clear-icon",
-                    modifier = Modifier
-                        .weight(1f)
-                        .wrapContentWidth(Alignment.End)
-                        .padding(end = 6.dp, top = 16.dp)
-                        .size(30.dp)
-                        .clickable {
-                            vm.searchViewVisibility(false)
-                            vm.updateSearchParam("")
-                        }
-                )
+                    Icon(
+                        imageVector = Icons.Sharp.Clear,
+                        tint = purpleD1,
+                        contentDescription = "clear-icon",
+                        modifier = Modifier
+                            .weight(1f)
+                            .wrapContentWidth(Alignment.End)
+                            .padding(end = 6.dp, top = 16.dp)
+                            .size(30.dp)
+                            .clickable {
+                                vm.searchViewVisibility(false)
+                                vm.updateSearchParam("")
+                            }
+                    )
+                }
+
             }
-        } else {
-            Spacer(modifier = Modifier.width(4.dp))
-            Text(
-                modifier = Modifier.padding(8.dp),
-                text = "📝 Notes",
-                style = robotoCus.subtitle2,
-                fontSize = 24.sp,
-            )
-            Icon(
-                imageVector = Icons.Sharp.Search,
-                tint = purpleD1,
-                contentDescription = "Add Icon",
-                modifier = Modifier
-                    .weight(1f)
-                    .wrapContentWidth(Alignment.End)
-                    .padding(top = 12.dp, end = 8.dp)
-                    .size(30.dp)
-                    .clickable {
-                        vm.searchViewVisibility(true)
-                    }
-            )
+            false -> {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(70.dp)
+                ) {
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text(
+                        modifier = Modifier.padding(8.dp),
+                        text = "📝 Notes",
+                        style = robotoCus.subtitle2,
+                        fontSize = 24.sp,
+                    )
+                    Icon(
+                        imageVector = Icons.Sharp.Search,
+                        tint = purpleD1,
+                        contentDescription = "Add Icon",
+                        modifier = Modifier
+                            .weight(1f)
+                            .wrapContentWidth(Alignment.End)
+                            .padding(top = 16.dp, end = 8.dp)
+                            .size(30.dp)
+                            .clickable {
+                                vm.searchViewVisibility(true)
+                            }
+                    )
+                }
+            }
         }
 
     }
-
 }

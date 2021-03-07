@@ -51,7 +51,7 @@ fun AddNote(vm: MainViewModel, note: Note, backPress: () -> Unit) {
                         tint = purpleD1,
                         contentDescription = "back-buttom",
                         modifier = Modifier
-                            .padding(end = 6.dp, top = 4.dp)
+                            .padding(end = 6.dp, top = 8.dp)
                             .size(30.dp)
                             .clickable {
                                 backPress.invoke()
