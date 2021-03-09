@@ -7,7 +7,7 @@ Notes app with full jetpack compose architecture (UI + navigation). Uses MVVM, R
 
 the goal of this project is to create a android notes app using compose navigation and UI
 
-<img src="https://github.com/zedlabs/ComposeNotes/blob/master/screenshots/sc01.png" width="300" height="600">    <img src="https://github.com/zedlabs/ComposeNotes/blob/master/screenshots/sc02.png" width="300" height="600">   <img src="https://github.com/zedlabs/ComposeNotes/blob/master/screenshots/sc03.png" width="300" height="600"> 
+<img src="https://github.com/zedlabs/ComposeNotes/blob/master/screenshots/sc01.png" width="270" height="550">    <img src="https://github.com/zedlabs/ComposeNotes/blob/master/screenshots/sc02.png" width="270" height="550">   <img src="https://github.com/zedlabs/ComposeNotes/blob/master/screenshots/sc03.png" width="270" height="550"> 
 
 * Tech-stack
     * [Kotlin](https://kotlinlang.org/) 
