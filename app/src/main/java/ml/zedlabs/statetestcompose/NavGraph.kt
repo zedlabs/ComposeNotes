@@ -1,5 +1,6 @@
 package ml.zedlabs.statetestcompose
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
@@ -22,6 +23,7 @@ object MainDestinations {
     const val NOTE_MODEL_KEY = "note"
 }
 
+@ExperimentalAnimationApi
 @Composable
 fun NavGraph(startDestination: String = MainDestinations.NOTES_LIST) {
 

@@ -56,19 +56,11 @@ dependencies {
     // Fragment
     implementation "androidx.fragment:fragment-ktx:$fragmentVersion"
 
-    // Lifecycle + ViewModel & LiveData
-//    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    // Lifecycle + LiveData
    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
-//    implementation "android.arch.lifecycle:common-java8:$lifecycleVersion"
 
     // Navigation Component
-    implementation "androidx.navigation:navigation-compose:1.0.0-alpha08"
-//    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
-//    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
-
-    //glide
-//    implementation 'com.github.bumptech.glide:glide:4.11.0'
-//    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation "androidx.navigation:navigation-compose:1.0.0-alpha09"
 
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
