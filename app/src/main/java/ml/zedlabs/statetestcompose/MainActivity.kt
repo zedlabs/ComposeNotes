@@ -2,6 +2,8 @@ package ml.zedlabs.statetestcompose
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.TableRow
+import android.widget.TextView
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -18,7 +20,9 @@ class MainActivity : AppCompatActivity() {
             NavGraph()
         }
     }
+
 }
+
 
 
 

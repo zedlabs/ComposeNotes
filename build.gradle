@@ -8,30 +8,30 @@ buildscript {
         // App dependencies
         appCompatVersion = "1.2.0"
         constraintLayoutVersion = "2.0.4"
-        coroutinesVersion = "1.4.1"
+        coroutinesVersion = "1.4.3"
         dataStoreVersion = "1.0.0-alpha02"
         espressoVersion = "3.3.0"
-        fragmentVersion = "1.3.0"
+        fragmentVersion = "1.3.2"
         gradleVersion = '7.0.0-alpha07'
-        hiltAndroidXVersion = "1.0.0-alpha03"
+        hiltAndroidXVersion = "1.0.0-beta01"
         hiltVersion = "2.33-beta"
         junitVersion = "4.13.1"
-        kotlinVersion = "1.4.31"
+        kotlinVersion = "1.4.32"
         ktxVersion = "1.3.2"
-        lifecycleVersion = "2.3.0"
+        lifecycleVersion = "2.3.1"
         materialVersion = "1.3.0"
         navigationVersion = "2.3.3"
         roomVersion = "2.2.6"
         testExtJunitVersion = "1.1.2"
-        compose = "1.0.0-beta02"
+        compose = "1.0.0-beta04"
 
     }
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.0-alpha08'
+        classpath 'com.android.tools.build:gradle:7.0.0-alpha14'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
