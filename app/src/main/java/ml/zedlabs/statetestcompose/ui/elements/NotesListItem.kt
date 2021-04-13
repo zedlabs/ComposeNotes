@@ -49,7 +49,7 @@ fun NotesListItem(note: Note, editNote: (Note) -> Unit) {
                         .background(purpleD3)
                         .padding(8.dp)
                         .fillMaxWidth(.95f),
-                    text = note.title,
+                    text = note.title ?: "",
                     style = robotoCus.body1,
                     fontSize = 20.sp,
                 )
@@ -73,7 +73,7 @@ fun NotesListItem(note: Note, editNote: (Note) -> Unit) {
             }
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = note.body,
+                text = note.body ?: "",
                 style = robotoCus.subtitle1,
                 fontSize = 16.sp,
                 modifier = Modifier.padding(start = 8.dp, bottom = 8.dp)

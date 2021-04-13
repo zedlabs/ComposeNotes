@@ -24,6 +24,7 @@ import ml.zedlabs.statetestcompose.ui.theme.*
 
 @Composable
 fun NotesList(vm: MainViewModel, editNote: (Note) -> Unit) {
+
     val notes by vm.notes.observeAsState()
     val searchParam by vm.searchParam.observeAsState("")
 
@@ -44,7 +45,7 @@ fun NotesList(vm: MainViewModel, editNote: (Note) -> Unit) {
                                 .padding(bottom = 2.dp)
                         )
                     },
-                    onClick = { editNote(Note(title = "", body = "")) },
+                    onClick = { editNote(Note(id = -1, title = "", body = "")) },
                     icon = { Icon(imageVector = Icons.Sharp.Add, contentDescription = "Add Icon") },
                     backgroundColor = purpleD0
                 )
@@ -52,7 +53,7 @@ fun NotesList(vm: MainViewModel, editNote: (Note) -> Unit) {
         ) {
             LazyColumn {
                 itemsIndexed(
-                    items = notes.orEmpty().filter { it.title.contains(searchParam) }) { _, note ->
+                    items = notes.orEmpty().filter { it.title?.contains(searchParam)!! }) { _, note ->
                     NotesListItem(note, editNote)
                 }
             }

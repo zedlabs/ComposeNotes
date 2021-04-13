@@ -2,7 +2,6 @@ package ml.zedlabs.statetestcompose.ui.elements
 
 import android.content.Context
 import android.widget.Toast
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -22,19 +21,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import ml.zedlabs.statetestcompose.db.Note
-import ml.zedlabs.statetestcompose.ui.MainViewModel
+import ml.zedlabs.statetestcompose.ui.NoteViewModel
 import ml.zedlabs.statetestcompose.ui.theme.*
 
-@ExperimentalAnimationApi
 @Composable
-fun AddNote(vm: MainViewModel, note: Note, backPress: () -> Unit) {
-
+fun AddNote(vm: NoteViewModel, backPress: () -> Unit) {
 
     StateTestComposeTheme {
 
-        val title by vm.title.observeAsState(note.title)
-        val body by vm.body.observeAsState(note.body)
+        val title by vm.title.observeAsState()
+        val body by vm.body.observeAsState()
+        val id = vm.noteId.observeAsState()
         val ctx = LocalContext.current
 
 
@@ -78,10 +75,11 @@ fun AddNote(vm: MainViewModel, note: Note, backPress: () -> Unit) {
             ) {
                 Spacer(modifier = Modifier.height(20.dp))
                 OutlinedTextField(
+                    value = title ?: "",
+                    onValueChange = { vm.updateTitle(it) },
                     modifier = Modifier.fillMaxWidth(),
-                    value = title,
-                    onValueChange = { vm.onTitleChanged(it) },
                     label = { Text(text = " Note Title ") },
+
                     colors = TextFieldDefaults.outlinedTextFieldColors(
                         focusedBorderColor = purpleD0, unfocusedBorderColor = purpleD3
                     ),
@@ -91,8 +89,8 @@ fun AddNote(vm: MainViewModel, note: Note, backPress: () -> Unit) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .defaultMinSize(minHeight = 90.dp),
-                    value = body,
-                    onValueChange = { vm.onBodyChanged(it) },
+                    value = body ?: "",
+                    onValueChange = { vm.updateBody(it) },
                     label = { Text(text = "Note Details ") },
                     colors = TextFieldDefaults.outlinedTextFieldColors(
                         focusedBorderColor = purpleD0, unfocusedBorderColor = purpleD3
@@ -107,26 +105,13 @@ fun AddNote(vm: MainViewModel, note: Note, backPress: () -> Unit) {
                             .background(purpleD0)
                             .width(100.dp),
                         onClick = {
-                            when (note.title) {
-                                "" -> {
-                                    if (title.isNotEmpty()) vm.insertNote(
-                                        Note(title = title, body = body)
-                                    )
+                            if (title!!.isNotEmpty()) {
+                                when (id.value) {
+                                    -1 -> { vm.insertNote() }
+                                    else -> { vm.updateNote() }
                                 }
-                                else -> {
-                                    vm.updateNote(
-                                        Note(
-                                            id = note.id,
-                                            title = title,
-                                            body = body,
-                                            author = note.author
-                                        )
-                                    )
-                                }
-                            }
-
-                            if (title.isNotEmpty()) backPress.invoke()
-                            else ctx.makeShortToast("Title cant be empty!")
+                                backPress.invoke()
+                            } else ctx.makeShortToast("Title cant be empty!")
                         }) {
                         Text(
                             modifier = Modifier.padding(bottom = 4.dp),

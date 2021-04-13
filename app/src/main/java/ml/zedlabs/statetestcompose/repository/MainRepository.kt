@@ -20,5 +20,8 @@ class MainRepository @Inject constructor(
         .flowOn(Dispatchers.Main)
         .conflate()
 
+    fun noteWithId(id: Int): Flow<Note>{
+        return notesDao.findNoteById(id)
+    }
 
 }

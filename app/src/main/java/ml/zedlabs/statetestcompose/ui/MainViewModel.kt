@@ -2,12 +2,10 @@ package ml.zedlabs.statetestcompose.ui
 
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import ml.zedlabs.statetestcompose.repository.MainRepository
 import ml.zedlabs.statetestcompose.db.Note
 import ml.zedlabs.statetestcompose.db.NotesDao
+import ml.zedlabs.statetestcompose.repository.MainRepository
 import javax.inject.Inject
 
 @HiltViewModel
@@ -48,6 +46,8 @@ class MainViewModel @Inject constructor(
 
     val notes: LiveData<List<Note>> = repository.getAllNotes().asLiveData()
 
+
+    //move local db operation to repository layer
     fun insertNote(note: Note) {
         viewModelScope.launch {
             notesDao.insertNote(note)

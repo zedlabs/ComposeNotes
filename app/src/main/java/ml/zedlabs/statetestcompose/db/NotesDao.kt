@@ -26,5 +26,5 @@ interface NotesDao {
     suspend fun updateNote(note: Note)
 
     @Query("SELECT * FROM notes WHERE id = :noteId")
-    suspend fun findNoteById(noteId: Int): Note
+    fun findNoteById(noteId: Int): Flow<Note>
 }

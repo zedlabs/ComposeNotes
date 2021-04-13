@@ -22,11 +22,11 @@ object AppComponent {
 
     @Singleton
     @Provides
-    fun providesAppDatabase(@ApplicationContext context: Context) : NoteDatabase =
+    fun providesAppDatabase(@ApplicationContext context: Context): NoteDatabase =
         Room.databaseBuilder(
             context,
             NoteDatabase::class.java,
             "note-db"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
 
 }

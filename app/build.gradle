@@ -84,8 +84,12 @@ dependencies {
 
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltAndroidXVersion"
     implementation "androidx.hilt:hilt-navigation:$hiltAndroidXVersion"
-    implementation "androidx.hilt:hilt-navigation-fragment:$hiltAndroidXVersion"
+    implementation "androidx.hilt:hilt-navigation-fragment:1.0.0-beta01"
     kapt "androidx.hilt:hilt-compiler:$hiltAndroidXVersion"
+    implementation "androidx.hilt:hilt-navigation-compose:1.0.0-alpha01"
+
+    implementation "androidx.hilt:hilt-common:1.0.0-beta01"
+    kapt "com.google.dagger:hilt-compiler:2.33-beta"
 
     // DataStore
 //     implementation "androidx.datastore:datastore-preferences:$dataStoreVersion"
