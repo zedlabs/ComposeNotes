@@ -132,3 +132,7 @@ fun AddNote(vm: NoteViewModel, backPress: () -> Unit) {
 fun Context.makeShortToast(text: String) {
     Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
 }
+
+fun Context.makeLongToast(text: String) {
+    Toast.makeText(this, text, Toast.LENGTH_LONG).show()
+}
