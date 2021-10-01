@@ -21,6 +21,7 @@ object MainDestinations {
     const val EDIT_NOTE = "edit-note"
     const val NOTE_ID_KEY = "noteId"
     const val NOTE_MODEL_KEY = "note"
+    const val NOTE_EDIT_DELETE = "delete-note"
 }
 
 @ExperimentalAnimationApi
