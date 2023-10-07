@@ -1,4 +1,5 @@
 # ComposeNotes
+[NOT ACTIVELY MAINTAINED]
 Notes app with full jetpack compose architecture (UI + navigation). Uses MVVM, Room, Kotlin Flows &amp; LiveData
   </br>
   
